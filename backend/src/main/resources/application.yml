@@ -1,0 +1,71 @@
+server:
+  port: 1227
+  servlet:
+    context-path: /gbo
+
+spring:
+  redis:
+    host: www.yangshuqian.com
+    password: YANGbo!@#$1234
+    port: 36897
+    database: 0
+    timeout: 3000ms
+    lettuce:
+      pool:
+        min-idle: 0 # 连接池中的最小空闲连接 默认为 0
+        max-idle: 8 # 连接池中的最大空闲连接 默认为8
+        max-active: 8 # 连接池最大连接数(使用负值表示没有限制) 默认为8
+        max-wait: -1ms # 连接池最大阻塞等待时间(使用负值表示没有限制) 默认为-1
+  profiles:
+    active: prod #对应不同的环境
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/ybblog?serverTimezone=GMT%2b8&characterEncoding=utf-8
+    username: root
+    password: root
+    type: com.alibaba.druid.pool.DruidDataSource
+    dbcp2:
+      max-wait-millis: 10000
+      min-idle: 5
+      initial-size: 5
+      validation-query: SELECT 1
+  thymeleaf:
+      prefix: classpath:/templates/  #指定模板所在的目录
+      check-template-location: true  #检查模板路径是否存在
+      cache: false #是否缓存，开发模式下设置为false，避免改了模板还要重启服务器，线上设置为true，可以提高性能
+      suffix: .html
+      encoding: UTF-8
+      mode: LEGACYHTML5
+      servlet:
+        content-type: text/html
+  jpa:
+    hibernate:
+      ddl-auto: none
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      use-new-id-generator-mappings: false
+    show-sql: false
+  messages:
+    encoding: UTF-8
+    basename: messages
+  mail:
+    host: smtp.163.com
+    port: 465
+    username: bo_yangfly@163.com
+    password: vhugindijcw567
+    default-encoding: UTF-8
+    properties:
+      mail:
+        smtp:
+          ssl:
+            enable: true
+          socketFactory:
+            port: 465
+            class: javax.net.ssl.SSLSocketFactory
+          auth: true
+          starttls:
+            enable: true
+            required: true
+
+logging:
+  config: classpath:log4j2-log.xml

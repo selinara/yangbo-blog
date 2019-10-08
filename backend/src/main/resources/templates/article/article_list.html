@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:include="common/common_head :: commonHeader('博文管理')"></head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="row" style="float: left;margin: 20px 0px 0px 20px;">
+                    <div class="col-sm-9">
+                        <span class="input-group-btn">
+                            <span style="float: left;">
+                                <input id="articleTitle" type="text" placeholder="请输入文章标题模糊查找" th:value="${articleTitle}" name="articleTitle" class="input-sm form-control"/>
+                            </span>
+                            <span style="float:left; width: 300px;margin-left: 20px;">
+                                <select class="form-control m-b" name="sortId" id="sortId">
+                                    <option value="0">-分类选择-</option>
+                                    <option th:each="sortObj: ${sorts}" th:value="${sortObj.sortId}" th:text="${sortObj.sortName}"></option>
+                                </select>
+                            </span>
+                            <span style="float:left; width: 300px;margin-left: 20px;">
+                                <select class="form-control m-b" name="labelId" id="labelId">
+                                    <option value="0">-标签选择-</option>
+                                    <option th:each="labelObj: ${labels}" th:value="${labelObj.labelId}" th:text="${labelObj.labelName}"></option>
+                                </select>
+                            </span>
+                            <span style="float: left;margin-left: 30px;">
+                                <button class="btn btn-sm btn-primary" onclick="table(false)"> 搜索</button>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <a th:href="@{/article/add}" class="btn btn-info">增加</a>
+                    <table class="table table-striped table-bordered table-hover dataTables-article">
+                        <thead>
+                        <tr>
+                            <th>文章标题</th>
+                            <th>文章分类</th>
+                            <th>文章标签</th>
+                            <!--<th>文章内容</th>-->
+                            <th>浏览量</th>
+                            <th>评论数</th>
+                            <th>点赞数</th>
+                            <th>文章日期</th>
+                            <th>状态</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 全局js -->
+<div th:include="common/common_js :: onloadJS"></div>
+
+<script th:src="@{/static/js/plugins/jeditable/jquery.jeditable.js}"></script>
+<!-- Data Tables -->
+<script th:src="@{/static/js/plugins/dataTables/jquery.dataTables.js}"></script>
+<script th:src="@{/static/js/plugins/dataTables/dataTables.bootstrap.js}"></script>
+
+<!-- Page-Level Scripts -->
+<script type="text/javascript">
+
+    $(function () {
+        table(true);
+    });
+
+    var table = function(way){
+        $('.dataTables-article').dataTable({
+            searching: false, //是否开启搜索功能
+            ordering: true,//是否排序
+            processing: true,//获取数据过程中是否出现加载指示
+            bPaginate:true,//是否允许分页
+            bInfo:true,//是否显示表格相关信息
+            destroy:true,//销毁一个实例
+            // iDisplayLength:5,//分页时每页显示的行数
+            pageLength: 5,
+            bStateSave: way, // 记录当前页码，返回的时候跳转到当前页
+            bLengthChange:false,
+            serverSide: true,//当用ajax请求数据源时，这个属性必须添加，切记
+            ajax:{ //使用ajax记得要引入jquery.min.js
+                url:'[[@{/article/index}]]', //请求路径，也就是控制器里方法
+                type:"post",
+                async:true,
+                data:{
+                    articleTitle: $('#articleTitle').val(),
+                    sortId: $('#sortId').val(),
+                    labelId: $('#labelId').val()
+                } //请求参数
+            },
+            columns:[  //绑定的数据源，后台的json数据里必须有这些属性，保持一致性
+                {"data":"articleTitle","sTitle":"文章标题"},
+                {"data":"sortName","sTitle":"分类"},
+                {"data":"labelName","sTitle":"标签"},
+                // {"data":"articleContent","class":"ellip"},
+                {"data":"articleViews"},
+                {"data":"articleCommentCount"},
+                {"data":"articleLikeCount"},
+                // {
+                //     "data":"articleDate",
+                //     "render": function (data, type, row) {
+                //         return getLocalTime(data);
+                //     },
+                //     "targets": 0
+                // },
+                {
+                    "data":"articleDate"
+                },
+                {
+                    "data":"isRelease",
+                    "render": function (data, type, row) {
+                        return data==0?"<small class=\"label label-warning\"> 未发布</small>":"<small class=\"label label-success\"> 已发布</small>";
+                    },
+                    "targets": 0
+                },
+                {"data":null}
+            ],
+            columnDefs:[
+                {
+                    targets:8,  //对数据源中的第六行进行渲染
+                    render:function(data){
+                        var hasReleaseHtml = data['isRelease'] == 1 ?
+                            '<a class="btn btn-default m-l-md" href="[[@{/article/status?st=0&aid=}]]'+data['articleId']+'"><i class="fa fa-level-down">' +
+                            '</i>&nbsp;&nbsp;<span class="bold">下架</span></a>':
+                            '<a class="btn btn-success m-l-md" href="[[@{/article/status?st=1&aid=}]]'+data['articleId']+'">' +
+                            '<i class="fa fa-level-up"></i>&nbsp;&nbsp;<span class="bold">发布</span></a>';
+                        var isTopHtml = data['isRoof'] != 1 ? '<a title="置顶"  class="btn btn-danger m-l-md" href="[[@{/article/roof?aid=}]]'+data['articleId']+'">' +
+                            '<i class="fa fa-arrow-up"></i></a>': '<span class="btn btn-label m-l-md bold">已置顶</span>';
+                        var html = '<a class="btn btn-info" href="[[@{/article/edit?aid=}]]'+data['articleId']+'">' +
+                            '<i class="fa fa-paste"></i>&nbsp;&nbsp;<span class="bold">编辑</span></a><a class="btn btn-primary m-l-md" onclick="javascript:delArticle('+data['articleId']+')">' +
+                            '<i class="fa fa-times"></i>&nbsp;&nbsp;<span class="bold">删除</span></a>' + hasReleaseHtml + isTopHtml;
+                        return html;
+                    }
+                }
+            ],
+            oLanguage : { // 国际化配置
+                "sProcessing" : "正在获取数据，请稍后...",
+                "sLengthMenu" : "显示 _MENU_ 条",
+                "sZeroRecords" : "没有找到数据",
+                "sInfo" : "从 _START_ 到  _END_ 条记录 总记录数为 _TOTAL_ 条",
+                "sInfoEmpty" : "记录数为0",
+                "sInfoFiltered" : "(全部记录数 _MAX_ 条)",
+                "sInfoPostFix" : "",
+                "sSearch" : "查询",
+                "sUrl" : "",
+                "oPaginate" : {
+                    "sFirst" : "第一页",
+                    "sPrevious" : "上一页",
+                    "sNext" : "下一页",
+                    "sLast" : "最后一页"
+                }
+            },
+        });
+    };
+
+    function delArticle(articleId) {
+        swal({
+            title: "您确定要删除这篇文章吗",
+            text: "删除后将无法恢复，请谨慎操作！",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "删除",
+            closeOnConfirm: false
+        }, function () {
+            $.ajax({
+                url:'[[@{/article/del?aid=}]]'+articleId,
+                data:'',
+                type:'GET',
+                dataType: 'json',
+                contentType: false,
+                processData: false,
+                cache: false,
+                success: function(data){
+                    console.log(JSON.stringify(data));
+                    swal({title:"删除成功！",
+                        text:"您已经永久删除了这篇文章",
+                        type:"success"}, function(){
+                        location.replace(location.href);
+                    });
+                },
+                error:function(){
+                    location.href="[[@{/no/permission}]]";
+                }
+            })
+        });
+    }
+</script>
+</body>
+</html>

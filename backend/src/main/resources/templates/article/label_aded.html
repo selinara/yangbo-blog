@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:include="common/common_head :: commonHeader('标签编辑')"></head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <label th:text="${tip}"></label>
+                    <form class="form-horizontal m-t" id="labelForm" th:action="@{/article/label/submit}" method="post">
+                        <input type="hidden" name="labelId" th:value="${lid}">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">标签名称：</label>
+                            <div class="col-sm-8">
+                                <input id="labelName" name="labelName" th:value="${name}" class="form-control" type="text" aria-required="true" aria-invalid="true">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">标签别名：</label>
+                            <div class="col-sm-8">
+                                <input id="labelAlias" maxlength="15" name="labelAlias" th:value="${alias}" class="form-control" type="text" aria-required="true" aria-invalid="true">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">描述：</label>
+                            <div class="col-sm-8">
+                                <input id="labelDescription" th:value="${des}" name="labelDescription" class="form-control" type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-8 col-sm-offset-3">
+                                <button class="btn btn-primary" type="submit">提交</button>
+                                <a class="btn btn-info" style="margin-left: 20px;" href="javascript:history.go(-1)">返回</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 全局js -->
+<div th:include="common/common_js :: onloadJS"></div>
+<script th:src="@{/static/js/demo/form-validate-demo.js}"></script>
+</body>
+
+</html>

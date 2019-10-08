@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:include="common/common_head :: commonHeader('权限设置')"></head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <label>权限设置</label>
+                    <form class="form-horizontal m-t" id="signupForm" th:action="@{/system/role/authsubmit}" method="post">
+                        <input type="hidden" name="roleId" th:value="${rid}">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">角色编码：</label>
+                            <div class="col-sm-8">
+                                <input id="roleKey" name="roleKey" th:value="${key}" class="form-control" readonly type="text" aria-required="true" aria-invalid="true">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">角色名称：</label>
+                            <div class="col-sm-8">
+                                <input id="roleValue" name="roleValue" th:value="${val}" class="form-control" readonly type="text" aria-required="true" aria-invalid="true">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">权限设置：</label>
+                            <div class="col-sm-8">
+                                <div>
+                                    <div class="checkbox checkbox-info" th:each="authRole : ${authPageList}">
+                                        <input th:id="${authRole.menuCode}" name="menuCode" id="menuCode" type="checkbox" th:value="${authRole.menuCode}" th:checked="${authRole.isHasAuth}">
+                                        <label th:for="${authRole.menuCode}" th:text="${authRole.menuName}"></label>
+                                        <span th:style="${authRole.menuType=='1'?'color: #00b7ee':'color: #8a1f11'}"><strong th:text="${authRole.menuType=='1'?'页面':'按钮'}"></strong></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-8 col-sm-offset-3">
+                                <button class="btn btn-primary" type="submit">提交</button>
+                                <a class="btn btn-info" style="margin-left: 20px;" href="javascript:history.go(-1)">返回</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 全局js -->
+<div th:include="common/common_js :: onloadJS"></div>
+<script th:src="@{/static/js/demo/form-validate-demo.js}"></script>
+</body>
+
+</html>

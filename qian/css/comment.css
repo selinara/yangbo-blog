@@ -1,0 +1,141 @@
+.commentbox{
+    width: calc(100% - 40px);
+    margin: 20px 20px;
+    font-family: 'Microsoft YaHei';
+}
+.mytextarea {
+    width: 100%;
+    overflow: auto;
+    word-break: break-all;
+    height: 100px;
+    color: #000;
+    font-size: 1em;
+    resize: none;
+}
+.comment-list{
+    width: calc(100% - 20px);
+    margin: 20px 10px;
+    clear: both;
+    padding-top: 20px;
+    font-family: 'Microsoft YaHei';
+}
+.comment-list .comment-info{
+    position: relative;
+    margin-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ccc;
+}
+.comment-list .comment-info header{
+    width: 10%;
+    position: absolute;
+}
+.comment-list .comment-info header img{
+    width: 100%;
+    border-radius: 50%;
+    padding: 5px;
+}
+.comment-list .comment-info .comment-right{
+    padding:5px 0px 5px 11%;
+}
+.comment-list .comment-info .comment-right h3{
+    margin: 5px 0px;
+}
+.comment-list .comment-info .comment-right .comment-content-header{
+    height: 25px;
+}
+.comment-list .comment-info .comment-right .comment-content-header span,.comment-list .comment-info .comment-right .comment-content-footer span{
+    padding-right: 2em;
+    color: #aaa;
+}
+.comment-list .comment-info .comment-right .comment-content-header span,.comment-list .comment-info .comment-right .comment-content-footer span.reply-btn,.send,.reply-list-btn{
+    cursor: pointer;
+}
+.comment-list .comment-info .comment-right .reply-list {
+    border-left: 3px solid #ccc;
+    padding-left: 7px;
+}
+.comment-list .comment-info .comment-right .reply-list .reply{
+    border-bottom: 1px dashed #ccc;
+}
+.comment-list .comment-info .comment-right .reply-list .reply div span{
+    padding-left: 10px;
+}
+.comment-list .comment-info .comment-right .reply-list .reply p span{
+    padding-right: 2em;
+    color: #aaa;
+}
+.replybox{
+    width: calc(100% - 20px);
+}
+.content-p{
+    width: 100%;
+}
+#comment{
+    margin-top: 5px;
+}
+
+.cp-l{float: left;width: calc(100% - 50px);line-height: 22px;padding-right: 10px;}
+.cp-r{float: left;width: 50px;cursor: pointer;}
+
+.comment-del,.comment-del-reply{cursor: pointer;}
+
+.comment-btn-ban{background-color: #9cacb1;border-color:#9cacb1;cursor:not-allowed;}
+.comment-btn-ban:hover{background-color: #9cacb1;border-color:#9cacb1;cursor:not-allowed;}
+
+
+.haslike{color: red!important;}
+.likenum{margin-left: 5px;}
+
+.txtare{border-width:1px;border-radius:5px;background-color:rgba(241,241,241,.98);outline-color: #00bfee;}
+
+.usernick{float: left;width: 100%;font:bold 14px/30px 'Microsoft YaHei';color: #3c3c3c;padding-bottom: 5px;display: none;}
+.usernick img{width: 30px;height: 30px;}
+
+.heart {
+    background:url(../img/web_heart_animation.png);
+    background-position:left;
+    background-repeat:no-repeat;
+    height:60px;
+    width:60px;
+    cursor:pointer;
+    position:absolute;
+    left:150px;
+    background-size:2900%;
+}
+.heart:hover, .heart:focus{
+    background-position:right;
+}
+
+@-webkit-keyframes heartBlast {
+    0% {
+        background-position:left;
+    }
+    100% {
+        background-position:right;
+    }
+}
+
+@keyframes heartBlast {
+    0% {
+        background-position:left;
+    }
+    100% {
+        background-position:right;
+    }
+}
+
+.heartAnimation {
+    display:inline-block;
+    -webkit-animation-name:heartBlast;
+    animation-name:heartBlast;
+    -webkit-animation-duration:.8s;
+    animation-duration:.8s;
+    -webkit-animation-iteration-count:1;
+    animation-iteration-count:1;
+    -webkit-animation-timing-function:steps(28);
+    animation-timing-function:steps(28);
+    background-position:right;
+}
+.feed p{font-family:"Microsoft YaHei",'Georgia', Times, Times New Roman, serif; font-size:25px;}
+.feed{clear:both; margin-bottom:20px; height:150px; position:relative;}
+.likeCount{font-family:'Georgia', Times, Times New Roman, serif; margin-top:32px;margin-left:34px;font-size:20px;color:#999999}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="common/common_head :: commonHeader('登录')">
+    <!--[if lt IE 9]>
+    <meta http-equiv="refresh" content="0;ie.html" />
+    <![endif]-->
+    <script>if(window.top !== window.self){ window.top.location = window.location;}</script>
+</head>
+<body class="gray-bg">
+    <div class="middle-box text-center loginscreen  animated fadeInDown">
+        <div>
+            <div>
+                <h1 class="logo-name">Y</h1>
+            </div>
+            <h3>Welcome to yangshuqian.com</h3>
+            <form class="m-t" role="form" th:action="@{/login}" method="post">
+                <div style="color: red;" th:if="${param.error}" th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}"></div>
+                <div class="form-group">
+                    <input type="username" name="username" class="form-control" placeholder="用户名" required="">
+                </div>
+                <div class="form-group">
+                    <input type="password" name="password" class="form-control" placeholder="密码" required="">
+                </div>
+                <button type="submit" class="btn btn-primary block full-width m-b">登 录</button>
+                <p class="text-muted text-center"> <a href="login.html#"><small>忘记密码了？</small></a> | <a href="register.html">注册一个新账号</a>
+                </p>
+            </form>
+        </div>
+    </div>
+    <p style="text-align:center;font-family: 'Microsoft YaHei UI'">CopyRight © 2019 All Right Reserved 版权所有：www.yangshuqian.com</p>
+    <!-- 全局js -->
+    <div th:include="common/common_js :: onloadJS"></div>
+</body>
+<script type="text/javascript">
+    $(function(){
+        console.log("login");
+    })
+</script>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>杨波个人博客-分享技术的个人博客网站</title>
+</head>
+<link href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="css/common.css"/>
+<link rel="stylesheet" type="text/css" href="css/article_detail.css"/>
+<link rel="stylesheet" type="text/css" href="css/wage.css"/>
+<link rel="stylesheet" type="text/css" href="css/comment.css"/>
+<link href="logo.ico" rel="shortcut icon"/>
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="plugin/bootstrap/js/bootstrap-hover-dropdown.js"></script>
+<script src="js/common.js"></script>
+<script src="js/article-detail.js"></script>
+<script src="js/jquery.comment.js"></script>
+<script src="plugin/layer/layer.min.js"></script>
+<body>
+	<div class="w_header">
+		<div class="container">
+			<div class="w_header_top">
+				<a href="#" class="w_logo"></a>
+				<span class="w_header_nav">
+					<ul>
+						<li><a id="bar1" href="index.html">首页</a></li>
+						<li><a id="bar2" href="article.html?sid=2">技术分享</a></li>
+						<li><a id="bar3" href="article.html?sid=3">追忆年华</a></li>
+						<li><a href="personal_filing.html">个人归档</a></li>
+						<li><a href="comment.html">留言</a></li>
+						<li><a href="about.html">关于我</a></li>
+					</ul>
+				</span>
+				<div class="w_search">
+					<div class="w_searchbox">
+						<input type="text" placeholder="标题检索" id="search-content"/>
+						<button id="search-btn">搜索</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="login-div" style="display: none" id="login-no">
+			<span class="login-reg" data-id="login">登录</span>
+			<span class="login-center">/</span>
+			<span class="login-reg" data-id="reg">注册</span>
+		</div>
+		<div class="login-div" style="display: none;" id="login-in">
+			<div class="dropdown pull-left">
+				<img alt="image" class="img-circle dropdown-toggle" src="" data-hover="dropdown" data-close-others="true">
+				<ul class="dropdown-menu">
+					<li>
+						<a href="personal-center.html"><span class="glyphicon glyphicon-user"></span>个人中心</a>
+					</li>
+					<li>
+						<a href="#" onclick="logout()"><span class="glyphicon glyphicon-log-out"></span>退出</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="w_container">
+		<div class="container">
+			<div class="row w_main_row">
+				
+				<ol class="breadcrumb w_breadcrumb">
+				  <li><a href="index.html">首页</a></li>
+				  <li class="active sonmenu"></li>
+				  <li class="active title-arti"></li>
+				  <span class="w_navbar_tip">我们长路漫漫，只因学无止境。</span>
+				</ol>
+				
+				<div class="col-lg-9 col-md-9 w_main_left">
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<h2 class="c_titile"></h2>
+							<p class="box_c"><span class="d_time"></span><span>编辑：<a href="#" class="author"></a></span><span class="read-num"></span></p>
+							<ul class="infos"></ul>
+							<div class="keybq">
+						    	<p class="crux"><span >关键字：</span></p>
+						    </div>
+							<div>
+						    	<span style="text-align: center;font: 12px/60px 'Microsoft YaHei';">觉得文章不错，点个赞吧</span>
+								<span class="heart " id="likestatus" rel="like"></span>
+								<span class="likeCount" id="likecount">0</span>
+							</div>
+							<div class="nextinfo">
+								<p class="last"></p>
+								<p class="next"></p>
+						    </div>
+						</div>
+					</div>
+
+					<div class="panel panel-default">
+						<div class="commentbox">
+							<div class="usernick">
+								<img class="img-circle" src="">
+								<span></span>
+							</div>
+							<textarea cols="80" rows="50" placeholder="既然来了，评论几句吧" class="mytextarea txtare" id="content"></textarea>
+							<div style="width: 100%;float: left;">
+								<div style="float: left;width: 90%;font: bold 20px/40px 'Microsoft Yahei';display: none;" id="tagnew">最新评论</div>
+								<div style="float: left;width: 10%;" class="btn btn-info pull-right" id="comment">评论</div>
+							</div>
+							<span class="zwpl">暂无评论，赶紧来占个沙发吧</span>
+						</div>
+						<div class="comment-list"></div>
+					</div>
+					
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<div class="content">
+								<p><a href="javascript:void(0)" onClick="dashangToggle()" class="dashang" title="打赏，支持一下">打赏</a></p>
+								<div class="hide_box"></div>
+								<div class="shang_box">
+									<a class="shang_close" href="javascript:void(0)" onClick="dashangToggle()" title="关闭"><img src="img/close.jpg" alt="取消" /></a>
+									<img class="shang_logo" src="img/logos.png" alt="杨波个人博客" />
+									<div class="shang_tit">
+										<p>感谢您的支持，我会继续努力的!</p>
+									</div>
+									<div class="shang_payimg">
+										<img src="img/alipayimg.jpg" alt="扫码支持" title="扫一扫" />
+									</div>
+									<div class="pay_explain">扫码打赏，你说多少就多少</div>
+									<div class="shang_payselect">
+										<div class="pay_item checked" data-id="alipay">
+											<span class="radiobox"></span>
+											<span class="pay_logo"><img src="img/alipay.jpg" alt="支付宝" /></span>
+										</div>
+										<div class="pay_item" data-id="weipay">
+											<span class="radiobox"></span>
+											<span class="pay_logo"><img src="img/wechat.jpg" alt="微信" /></span>
+										</div>
+									</div>
+									<div class="shang_info">
+										<p>打开<span id="shang_pay_txt">支付宝</span>扫一扫，即可进行扫码打赏哦</p>
+										<p>Powered by <a href="http://bo_yangfly@163.com" target="_blank">博主</a>，分享从这里开始，精彩与您同在</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-3 w_main_right">
+					
+					<div class="panel panel-default">
+					  <div class="panel-heading">
+					    <h3 class="panel-title">最新发布</h3>
+					  </div>
+					  <div class="panel-body">
+					    	<ul class="list-unstyled sidebar left-release"> </ul>
+					  </div>
+					</div>
+					
+					<div class="panel panel-default">
+					  <div class="panel-heading">
+					    <h3 class="panel-title">友情链接</h3>
+					  </div>
+					  <div class="panel-body">
+					    <div class="newContent">
+					    	<ul class="list-unstyled sidebar shiplink"></ul>
+					    </div>
+					  </div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="w_foot">
+		<div class="w_foot_copyright">Copyright © 2019-2020, www.yangshuqian.com. All Rights Reserved. </div>
+	</div>
+	<!--toTop-->
+	<div id="shape">
+		<div class="shapeColor">
+			<div class="shapeFly">
+			</div>
+		</div>
+	</div>
+</body>
+</html>

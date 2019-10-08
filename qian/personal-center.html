@@ -1,0 +1,209 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>杨波个人博客-分享技术的个人博客网站</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="plugin/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/common.css" />
+    <link rel="stylesheet" type="text/css" href="css/people-center.css" />
+    <link href="logo.ico" rel="shortcut icon" />
+    <link href="cropper/cropper.min.css" rel="stylesheet">
+    <link href="sitelogo/sitelogo.css" rel="stylesheet">
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="plugin/bootstrap/js/bootstrap.min.js"></script>
+    <script src="plugin/bootstrap/js/bootstrap-hover-dropdown.js"></script>
+    <script src="cropper/cropper.min.js"></script>
+    <script src="sitelogo/sitelogo.js"></script>
+    <script src="plugin/layer/layer.min.js"></script>
+</head>
+<body>
+<div class="w_header">
+    <div class="container">
+        <div class="w_header_top">
+            <a href="#" class="w_logo"></a>
+            <span class="w_header_nav">
+                <ul>
+                    <li><a id="bar1" href="index.html">首页</a></li>
+                    <li><a id="bar2" href="article.html?sid=2">技术分享</a></li>
+                    <li><a id="bar3" href="article.html?sid=3">追忆年华</a></li>
+                    <li><a id="bar4" href="personal_filing.html">个人归档</a></li>
+                    <li><a href="comment.html">留言</a></li>
+                    <li><a href="about.html">关于我</a></li>
+                </ul>
+            </span>
+        </div>
+    </div>
+    <div class="login-div" style="display: none" id="login-no">
+        <span class="login-reg" data-id="login">登录</span>
+        <span class="login-center">/</span>
+        <span class="login-reg" data-id="reg">注册</span>
+    </div>
+    <div class="login-div" style="display: none;margin-top: -40px!important;" id="login-in">
+        <div class="dropdown pull-left">
+            <img alt="image" class="img-circle dropdown-toggle" src="" data-hover="dropdown" data-close-others="true">
+            <ul class="dropdown-menu">
+                <li>
+                    <a href="personal-center.html"><span class="glyphicon glyphicon-user"></span>个人中心</a>
+                </li>
+                <li>
+                    <a href="#" onclick="logout()"><span class="glyphicon glyphicon-log-out"></span>退出</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="w_container">
+    <div class="container">
+        <div class="row w_main_row">
+            <ol class="breadcrumb w_breadcrumb">
+                <li><a href="index.html">首页</a></li>
+                <span class="w_navbar_tip">我们长路漫漫，只因学无止境。</span>
+            </ol>
+            <div class="col-lg-12 col-md-12 w_main_left">
+                <div class="panel panel-default">
+                    <div class="panel-body p-center">
+                        <div class="p-left">
+                            <span data-id="0" class="menu-selected"><i class="glyphicon glyphicon-user"></i>基本资料</span>
+                            <span data-id="1"><i class="glyphicon glyphicon-cog"></i>资料修改</span>
+                            <span data-id="2"><i class="glyphicon glyphicon-leaf"></i>评论@你</span>
+                        </div>
+                        <div class="p-right">
+                            <div id="content-0" style="display: block!important;">
+                                <span style="float:left;width: 20%;">
+                                    <img src="" style="width: 100%;" class="img-circle" alt="images"/>
+                                </span>
+                                <span style="float:left;width: calc(80% - 60px);margin-left: 60px;">
+                                    <h3>昵称：<strong><span id="u-nickname"></span></strong></h3>
+                                    <p>用户名： <span id="u-username"></span></p>
+                                    <p>邮&nbsp;&nbsp;&nbsp;箱： <span id="u-email"></span></p>
+                                    <p>手机号： <span id="u-phone"></span></p>
+                                </span>
+                            </div>
+                            <div id="content-1">
+                                <span class="left">
+                                    <span style="font: bold 10px/30px 'Microsoft Yahei'">点击头像图片更换头像</span>
+                                    <span id="crop-avatar">
+                                        <span class="avatar-view" title="修改头像">
+                                            <img src="" alt="Logo">
+                                        </span>
+                                    </span>
+                                </span>
+                                <span class="right">
+                                    <div class="line">
+                                        <label>昵称：</label>
+                                        <div>
+                                            <input id="nickname" maxlength="20" name="nickname" class="form-control" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="line">
+                                        <label>手机：</label>
+                                        <div>
+                                            <input id="phone" maxlength="11" name="phone" class="form-control" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="line">
+                                        <span style="float: left;margin-left: 20%;width: 100%;">
+                                            <button style="width: 60%; float: left;" class="btn btn-info" onclick="saveUserInfo()">保存</button>
+                                        </span>
+                                    </div>
+                                    <div class="line">
+                                        <span style="font: 12px/30px 'Microsoft JhengHei'">温馨提示：修改密码去登陆页点击忘记密码修改哦~</span>
+                                    </div>
+                                </span>
+                            </div>
+                            <div id="content-2">
+                                <h5>评论列表（最多展示10条@评论）</h5>
+                                <h4 class="zwpl">暂无回复</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="w_foot">
+    <div class="w_foot_copyright">Copyright © 2019-2020, www.yangshuqian.com. All Rights Reserved. </div>
+</div>
+<!--toTop-->
+<div id="shape">
+    <div class="shapeColor">
+        <div class="shapeFly">
+        </div>
+    </div>
+</div>
+
+<!--图片裁剪弹窗-->
+<div class="modal fade" id="avatar-modal" aria-hidden="true" aria-labelledby="avatar-modal-label" role="dialog" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form id="headForm" class="avatar-form"  enctype="multipart/form-data" method="post" action="">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal" type="button">&times;</button>
+                    <h4 class="modal-title" id="avatar-modal-label">修改头像</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="avatar-body">
+                        <div class="avatar-upload">
+                            <input type="hidden" name="token" id="token"/>
+                            <input type="hidden" name="username" id="username"/>
+                            <input type="hidden" name="oldfile" id="oldfile"/>
+                            <input class="avatar-src" name="avatar_src" type="hidden">
+                            <input class="avatar-data" name="avatar_data" type="hidden">
+                            <label for="avatarInput">图片上传</label>
+                            <input class="avatar-input" id="avatarInput" name="file" type="file" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg"></div>
+                        <div class="row">
+                            <div class="col-md-9">
+                                <div class="avatar-wrapper"></div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="avatar-preview preview-lg"></div>
+                                <div class="avatar-preview preview-md"></div>
+                                <div class="avatar-preview preview-sm"></div>
+                            </div>
+                        </div>
+                        <div class="row avatar-btns">
+                            <div class="col-md-3">
+                                <input class="btn btn-success btn-block avatar-save" type="submit" value="保存修改"><i class="fa fa-save"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="loading" aria-label="Loading" role="img" tabindex="-1"></div>
+
+<script src="js/common.js"></script>
+<script src="js/people-center.js"></script>
+<script type="text/javascript">
+
+    function imgPreview(fileDom) {
+        //判断是否支持FileReader
+        if(window.FileReader) {
+            var reader = new FileReader();
+        } else {
+            alert("您的设备不支持图片预览功能，如需该功能请升级您的设备！");
+        }
+        //获取文件
+        var file = fileDom.files[0];
+        var imageType = /^image\//;
+        //是否是图片
+        if(!imageType.test(file.type)) {
+            alert("请选择图片！");
+            return;
+        }
+        //读取完成
+        reader.onload = function(e) {
+            //获取图片dom
+            var img = document.getElementById("preview");
+            //图片路径设置为读取的图片
+            img.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+    }
+</script>
+</body>
+</html>

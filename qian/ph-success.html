@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>杨波个人博客-分享技术的个人博客网站</title>
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport"/>
+    <meta content="yes" name="apple-mobile-web-app-capable"/>
+    <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+    <meta content="telephone=no" name="format-detection"/>
+    <link href="css/login.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="plugin/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/login.css" />
+    <link rel="stylesheet" type="text/css" href="css/waplogin.css" />
+    <script src="plugin/jquery.min.js"></script>
+    <script src="js/common.js"></script>
+</head>
+<body>
+<section class="aui-flexView">
+    <header class="aui-navBar aui-navBar-fixed b-line">
+        <div class="aui-center">
+            <span class="aui-center-title">杨波个人博客登录</span>
+        </div>
+    </header>
+    <section class="aui-scrollView">
+         <div class="login_success">欢迎您，登录成功！</div>
+    </section>
+</section>
+<script type="text/javascript">
+    $(function () {
+        var username = $.cookie('LoginName');
+        var token = $.cookie('token');
+        var qrid = UrlParm.parm('qrid');
+        var appplt = UrlParm.parm('appplt');
+        var login_url = u+'/qrcode/login?qrid='+qrid+'&appplt='+appplt+"&status=0&username="+username+"&token="+token;
+        A.jsonpJqueryAjax(login_url, function (data) {
+            if (data.errorCode == '0') {
+                cleanCookie();
+            } else {
+                layer.msg(data.message+"，给博主留言问题吧~");
+            }
+        })
+    });
+</script>
+</body>
+</html>

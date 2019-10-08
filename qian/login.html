@@ -1,0 +1,127 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<title>杨波个人博客-分享技术的个人博客网站</title>
+    <link href="plugin/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/base.css" />
+    <script src="plugin/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/login.css" />
+    <script src="js/common.js"></script>
+    <script type="text/javascript" src="js/login.js"></script>
+    <script src="plugin/layer/layer.min.js"></script>
+    <style type="text/css">
+        div,a,input{box-sizing:content-box!important;}
+        .qrcode-position{position: relative;font-size: 30px;top: -52px;left: -32px;cursor: pointer;z-index: 1000;}
+        .qrcode-position:hover{color: #57Af57;}
+        .layui-layer-title{text-align: center;padding: 0;font-weight: bold;}
+    </style>
+</head>
+<body>
+     <div class="UnauthHomePage">
+        <div class="register_shadow">
+            <div class="register_shadow_txt"></div>
+        </div>
+    </div>
+    <div class="login_containter">
+        <div class="login_left">
+            <span class="glyphicon glyphicon-qrcode qrcode-position" title="点击扫描二维码登录"></span>
+            <img src="img/logos.png" class="logo" alt="..." style="margin:0 0 30px 35px;"/>
+            <h3><span>登&nbsp;录</span></h3>
+            <div class="login_validate loginAccunt_validate">
+                <div class="input_item">
+                    <i class="icon_un"></i>
+                    <input type="text" name="loginname" value="请输入用户名或邮箱" eg="请输入用户名或邮箱" class="loginName" />
+                    <span class="error_info errorloginName" style="display:none;"></span>
+                </div>
+                <div class="input_item">
+                    <i class="icon_pw"></i>
+                    <span class="password_upTxt">请输入密码</span>
+                    <input type="password" name="password" class="loginPwd" />
+                    <span class="error_info errorloginPwd" style="display:none;"></span>
+                </div>
+                <div class="input_item">
+                    <span class="autoTxt" style="cursor: default">没有账号？</span><a href="#" class="goReg">注册</a>
+                    <a href="javascript:;" class="login_wjmm goForget">忘记密码?</a>
+                </div>
+                <div class="input_item">
+                    <input type="button" class="loginBtn" onmousedown="LoginFormSubmit($(this));" value="登  录" />
+                </div>
+                <div class="input_item f-tac f-pb30">
+                    <a href="javascript:void(0)" class="iconQQ" onclick="openThirdParty('qq', this);"></a>
+                    <!--<a href="javascript:void(0)" class="iconWX" onclick="openWeiXin();"></a>-->
+                    <a href="javascript:void(0)" class="iconWB" onclick="openThirdParty('wb', this);"></a>
+                    <!--<a href="javascript:void(0)" class="iconZFB" onclick="openAliPay();"></a>-->
+                </div>
+            </div>
+            <!--注册-->
+            <div class="login_validate loginPhone_validate" style="display:none;">
+                <button class="goSend zhihui">点击发送</button>
+                <div class="input_item">
+                    <i class="icon_un"></i>
+                    <input type="text" name="username" value="请输入用户名" eg="请输入用户名" class="userName" maxlength="50" onblur="onblursCheckName($(this))"/>
+                    <span class="error_info erroruserName" style="display:none;"></span>
+                </div>
+                <div class="input_item">
+                    <i class="icon_dx"></i>
+                    <input type="text" name="userEmail" value="请输入邮箱" eg="请输入邮箱" class="loginPhone" maxlength="50"
+                           onkeyup="onKeyupSend($(this))" onblur="onblursLoginPhone($(this))" />
+                    <span class="error_info errorloginPhone" style="display:none;"></span>
+                </div>
+                <div class="input_item">
+                    <i class="icon_yzm"></i>
+                    <input type="text" name="codeval" value="验证码" eg="验证码" class="loginMailPwd" maxlength="6" onblur="onblursCheckCode($(this))"/>
+                    <span class="error_info errorMailPwd" style="display:none;"></span>
+                </div>
+                <div class="input_item">
+                    <i class="icon_pw"></i>
+                    <span class="password_upTxt">请输入密码</span>
+                    <input type="password" name="regpsw" class="regPwd" maxlength="30" onblur="onblursCheckPsw($(this))"/>
+                    <span class="error_info errorRegPwd" style="display:none;"></span>
+                </div>
+                <div class="input_item">
+                    <span class="autoTxt" style="cursor: default">已拥有账号？</span><a href="#" class="goLogin">登录</a>
+                </div>
+                <div class="input_item">
+                    <input type="button" class="MailRegBtn" onmousedown="RegMailSubmit($(this));" value="注  册" />
+                </div>
+                <div class="input_item f-tac f-pb30"></div>
+            </div>
+
+            <!--忘记密码-->
+            <div class="login_validate loginForget_validate" style="display:none;">
+                <button class="goSend zhihui changePsw">点击发送</button>
+                <div class="input_item">
+                    <i class="icon_dx"></i>
+                    <input type="text" name="userEmailPsw" value="请输入账号绑定的邮箱" eg="请输入账号绑定的邮箱" class="loginPhone" maxlength="50"
+                           onkeyup="onKeyupSendPP($(this))" onblur="onblursLoginPhonePP($(this))" />
+                    <span class="error_info errorloginPhonePP" style="display:none;"></span>
+                </div>
+                <div class="input_item">
+                    <i class="icon_yzm"></i>
+                    <input type="text" name="codevalPsw" value="验证码" eg="验证码" class="loginMailPwd" maxlength="6" onblur="onblursCheckCodePP($(this))"/>
+                    <span class="error_info errorMailPwdPP" style="display:none;"></span>
+                </div>
+                <div class="input_item">
+                    <i class="icon_pw"></i>
+                    <span class="password_upTxt">请输入新密码</span>
+                    <input type="password" name="newpsw" class="regPwd" maxlength="30" onblur="onblursCheckPswPP($(this))"/>
+                    <span class="error_info errorRegPwdPP" style="display:none;"></span>
+                </div>
+                <div class="input_item">
+                    <span class="autoTxt" style="cursor: default">密码想起来了？</span><a href="#" class="goLogin">登录</a>
+                </div>
+                <div class="input_item">
+                    <input type="button" class="MailRegBtn" id="confirmChange" onmousedown="ChangePswSubmit($(this));" value="确认修改" />
+                </div>
+                <div class="input_item f-tac f-pb30"></div>
+            </div>
+        </div>
+        <div class="login_right">
+        </div>
+    </div>
+</body>
+</html>
+
+

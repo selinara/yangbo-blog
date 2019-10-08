@@ -1,0 +1,27 @@
+.p-center{height: 600px;background-color: #f5f5f5;}
+.p-left {float: left;width: calc(25% - 30px);height: 100%;border: 0 solid #ededed;border-right-width: 30px;}
+.p-right {float: left;width: 75%;padding: 20px;}
+.p-left span{float: left;width: 100%;height: 60px;text-align: center;font:14px/60px 'Microsoft YaHei';cursor: pointer;}
+.p-left span i{margin-right: 10px;}
+.p-right > div{width: 100%;float: left;display: none;}
+
+.menu-selected{color:#619d21;border-radius:2px;font-weight:bolder;border-style: solid;border-width: 0 0 0 5px;}
+#content-1 {width: 100%;padding: 10px;float: left;}
+#content-1 .left{width: 40%; float: left;}
+#content-1 .right{width: 60%; float: left;}
+#content-1 .right .line{width: 100%;float: left;margin:20px 0 0;display: block!important;}
+#content-1 .right .line label{width: 20%;float: left;font: bold 14px/30px 'Microsoft YaHei';}
+#content-1 .right .line div{width: 80%;float: left;display: block!important;}
+
+#content-2 {height: 550px;overflow: scroll;}
+#content-2::-webkit-scrollbar {display: none;}
+#content-2 > div{float: left;width: 100%;font: normal 14px/20px 'Microsoft YaHei';}
+#content-2 {width: 100%;padding: 10px;float: left;}
+#content-2 > span{float: left;width: 100%;margin: 10px;border-bottom:thin solid #ffb680;}
+#content-2 > span > img{float: left;width: 60px;height: 60px;border-radius: 50%;}
+#content-2 > span > span{width: calc(100% - 60px);float: left;padding-left: 10px;}
+#content-2 > span > span > span:nth-child(1){width: 100%;float: left;font: bold 12px/30px 'Microsoft Yahei'}
+#content-2 > span > span > span:nth-child(2){width: 100%;float: left;}
+#content-2 > span > span > span:nth-child(3){width: 100%;float: left;text-align: right;margin-bottom: 6px;font-size: 12px;}
+#content-2 > span > span > span:nth-child(3) > i:nth-child(1){text-align: left;float: left;font-size: 10px;color: #a09898;}
+#content-2 > span > span > span:nth-child(3) > span{cursor: pointer;}

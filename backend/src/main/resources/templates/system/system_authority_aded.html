@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:include="common/common_head :: commonHeader('权限编辑')"></head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <label th:text="${tip}"></label>
+                    <form class="form-horizontal m-t" id="authForm" th:action="@{/system/auth/submit}" method="post">
+                        <input type="hidden" name="id" th:value="${id}">
+                        <input type="hidden" id="urlArr" name="urlArr" th:value="${urlArr}">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">菜单编码：</label>
+                            <div class="col-sm-8">
+                                <input id="menuCode" name="menuCode" th:value="${code}" class="form-control" type="text" aria-required="true" aria-invalid="true">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">菜单名称：</label>
+                            <div class="col-sm-8">
+                                <input id="menuName" name="menuName" th:value="${name}" class="form-control" type="text" aria-required="true" aria-invalid="true">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">菜单路径：</label>
+                            <div class="col-sm-8">
+                                <input id="dataUrl" name="dataUrl" th:value="${url}" class="form-control" type="text" aria-required="true" aria-invalid="true">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">菜单图标：</label>
+                            <div class="col-sm-8">
+                                <input id="icon" name="icon" th:value="${icon}" class="form-control" type="text" aria-required="true" aria-invalid="true">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">父级编码：</label>
+                            <div class="col-sm-8">
+                                <input id="parentMenucode" name="parentMenucode" th:value="${pcode}" class="form-control" type="text" aria-required="true" aria-invalid="true">
+                            </div>
+                        </div>
+                        <!--<div class="form-group">-->
+                            <!--<label class="col-sm-3 control-label">菜单级别：</label>-->
+                            <!--<div class="col-sm-8">-->
+                                <!--<select class="form-control m-b" name="menuType" th:value="${type}">-->
+                                    <!--<option value="0" th:selected="${type=='0'}">0</option>-->
+                                    <!--<option value="1" th:selected="${type=='1'}">1</option>-->
+                                    <!--<option value="2" th:selected="${type=='2'}">2</option>-->
+                                    <!--<option value="3" th:selected="${type=='3'}">3</option>-->
+                                <!--</select>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">菜单排序：</label>
+                            <div class="col-sm-8">
+                                <input id="sequence" name="sequence" th:value="${seq}" class="form-control" type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">菜单类型：</label>
+                            <div class="col-sm-8">
+                                <div class="radio-info">
+                                    <label><input type="radio" value="1" id="menuType" th:checked="${type=='1'?true:false}" name="menuType">页面</label>
+                                    <label><input type="radio" value="2" id="menuType" th:checked="${type=='2'?true:false}" name="menuType">按钮</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-8 col-sm-offset-3">
+                                <button class="btn btn-primary" type="submit">提交</button>
+                                <a class="btn btn-info" style="margin-left: 20px;" href="javascript:history.go(-1)">返回</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 全局js -->
+<div th:include="common/common_js :: onloadJS"></div>
+<script th:src="@{/static/js/demo/form-validate-demo.js}"></script>
+</body>
+
+</html>

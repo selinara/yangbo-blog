@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>杨波个人博客-分享技术的个人博客网站</title>
+</head>
+
+<link href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="css/common.css"/>
+<link rel="stylesheet" type="text/css" href="css/message.css"/>
+<link href="logo.ico" rel="shortcut icon"/>
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="plugin/jquery.page.js"></script>
+<script src="plugin/bootstrap/js/bootstrap-hover-dropdown.js"></script>
+<script src="plugin/layer/layer.min.js"></script>
+<script src="js/common.js"></script>
+<script src="js/message.js"></script>
+
+<body>
+	<div class="w_header">
+		<div class="container">
+			<div class="w_header_top">
+				<a href="#" class="w_logo"></a>
+				<span class="w_header_nav">
+					<ul>
+						<li><a id="bar1" href="index.html">首页</a></li>
+						<li><a id="bar2" href="article.html?sid=2">技术分享</a></li>
+						<li><a id="bar3" href="article.html?sid=3">追忆年华</a></li>
+						<li><a href="personal_filing.html">个人归档</a></li>
+						<li><a href="comment.html">留言</a></li>
+						<li><a href="about.html">关于我</a></li>
+					</ul>
+				</span>
+			</div>
+		</div>
+	<div class="login-div" style="display: none;margin-top: -40px!important;font-size: 14px;" id="login-no">
+			<span class="login-reg" data-id="login">登录</span>
+			<span class="login-center">/</span>
+			<span class="login-reg" data-id="reg">注册</span>
+		</div>
+		<div class="login-div" style="display: none;" id="login-in">
+			<div class="dropdown pull-left">
+				<img alt="image" class="img-circle dropdown-toggle" src="" style="margin-top: 18px!important;"  data-toggle="dropdown" data-hover="dropdown" data-close-others="false">
+				<ul class="dropdown-menu">
+					<li>
+						<a href="personal-center.html"><span class="glyphicon glyphicon-user"></span>个人中心</a>
+					</li>
+					<li>
+						<a href="#" onclick="logout()"><span class="glyphicon glyphicon-log-out"></span>退出</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="w_container">
+		<div class="container">
+			<div class="row w_main_row">
+				<ol class="breadcrumb w_breadcrumb">
+				<li><a href="index.html">首页</a></li>
+				  <li class="active">留言</li>
+				  <span class="w_navbar_tip">你，生命中最重要的过客，之所以是过客，因为你未曾为我停留。</span>
+				</ol>
+				
+				<div class="col-lg-12 col-md-12 w_main_left">
+					<div id="msgBox">
+						<form>
+							<input type="hidden" id="userName" value>
+							<p id="face" style="display: none;"><img src="" class="current" /></p>
+							<h2 style="font-family: 'Times New Roman'">相对博主说点啥？Just Say it!</h2>
+							<div><textarea id="conBox" class="f-text"></textarea></div>
+							<div class="tr">
+								<p>
+									<span class="countTxt">还能输入</span><strong class="maxNum">140</strong><span>个字</span>
+									<input id="sendBtn" type="button" value="留言" title="快捷键 Ctrl+Enter"/>
+								</p>
+							</div>
+						</form>
+						<div class="list">
+							<h3><span style="font: 16px/30px 'Microsoft Yahei'">最新留言</span></h3>
+							<ul>
+								<span class="zwpl">暂无留言</span>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<div class="w_foot">
+		<div class="w_foot_copyright">Copyright © 2019-2020, www.yangshuqian.com. All Rights Reserved. </div>
+	</div>
+	<!--toTop-->
+	<div id="shape">
+		<div class="shapeColor">
+			<div class="shapeFly">
+			</div>
+		</div>
+	</div>
+<script type="text/javascript">
+	$(function () {
+        A.initHeadPic();
+    });
+</script>
+</body>
+</html>

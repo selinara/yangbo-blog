@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:include="common/common_head :: commonHeader('角色管理')"></head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <a th:href="@{/system/auth/add}" class="btn btn-info">增加</a>
+                    <table class="table table-striped table-bordered table-hover dataTables-example">
+                        <thead>
+                        <tr>
+                            <th>菜单编码</th>
+                            <th>菜单名称</th>
+                            <th>菜单路径</th>
+                            <th>菜单图标</th>
+                            <th>父级编码</th>
+                            <th>菜单排序</th>
+                            <th>菜单类型</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="auth : ${authList}">
+                            <td th:text="${auth.menuCode}"></td>
+                            <td th:text="${auth.menuName}"></td>
+                            <td th:text="${auth.dataUrl}"></td>
+                            <td th:text="${auth.icon}"></td>
+                            <td th:text="${auth.parentMenucode}"></td>
+                            <td th:text="${auth.sequence}"></td>
+                            <td th:text="${auth.menuType=='1'?'导航菜单':'按钮菜单'}"></td>
+                            <td>
+                                <a class="close-link" th:href="@{/system/auth/edit(type=${auth.menuType},id=${auth.id},code=${auth.menuCode},name=${auth.menuName},url=${auth.dataUrl},pcode=${auth.parentMenucode},seq=${auth.sequence},icon=${auth.icon})}">
+                                    <i class="fa fa-wrench"></i>
+                                </a>
+                                <a class="close-link" th:onclick="'javascript:delauth(\''+${auth.id}+'\')'">
+                                    <i class="fa fa-times"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 全局js -->
+<div th:include="common/common_js :: onloadJS"></div>
+
+<script th:src="@{/static/js/plugins/jeditable/jquery.jeditable.js}"></script>
+<!-- Data Tables -->
+<script th:src="@{/static/js/plugins/dataTables/jquery.dataTables.js}"></script>
+<script th:src="@{/static/js/plugins/dataTables/dataTables.bootstrap.js}"></script>
+
+<!-- Page-Level Scripts -->
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.dataTables-example').dataTable({
+            bStateSave: true
+        });
+    });
+
+    function delauth(id) {
+        swal({
+            title: "您确定要删除这条信息吗",
+            text: "删除后将无法恢复，请谨慎操作！",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "删除",
+            closeOnConfirm: false
+        }, function () {
+            $.ajax({
+                url:'[[@{/system/auth/del?id=}]]'+id,
+                data:'',
+                type:'GET',
+                dataType: 'json',
+                contentType: false,
+                processData: false,
+                cache: false,
+                success: function(data){
+                    console.log(JSON.stringify(data));
+                    swal({title:"删除成功！",
+                        text:"您已经永久删除了这条信息。",
+                        type:"success"}, function(){
+                        location.replace(location.href);
+                    });
+                },
+                error:function(){
+                    location.href="[[@{/no/permission}]]";
+                }
+            })
+        });
+    }
+</script>
+</body>
+</html>

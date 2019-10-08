@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration status="info">
+    <!--先定义所有的appender-->
+    <appenders>
+        <!--这个输出控制台的配置-->
+        <Console name="console" target="SYSTEM_OUT" follow="true">
+            <!--控制台只输出level及以上级别的信息（onMatch），其他的直接拒绝（onMismatch）-->
+            <ThresholdFilter level="trace" onMatch="ACCEPT" onMismatch="DENY"/>
+            <!--这个都知道是输出日志的格式-->
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %class{36} %L %M - %msg%xEx%n"/>
+        </Console>
+
+        <!-- infoLog日志 -->
+        <RollingFile name="infolog" fileName="log/backend/info.log" filePattern="log/backend/info.%d{yyyy-MM-dd}.log">
+            <ThresholdFilter level="INFO"/>
+            <PatternLayout
+                    pattern="%d{yyyy-MM-dd HH:mm:ss,SSS} - %logger [%thread] %-5level %c %M:%L - %msg%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+        </RollingFile>
+        <!-- debugLog日志 -->
+        <RollingFile name="debuglog" fileName="log/backend/debug.log"
+                     filePattern="log/backend/debug.%d{yyyy-MM-dd}.log">
+            <ThresholdFilter level="DEBUG"/>
+            <PatternLayout
+                    pattern="%d{yyyy-MM-dd HH:mm:ss,SSS} - %logger [%thread] %-5level %c %M:%L - %msg%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+        </RollingFile>
+        <!-- errorLog日志 -->
+        <RollingFile name="errorlog" fileName="log/backend/faerror.log"
+                     filePattern="log/backend/faerror.%d{yyyy-MM-dd}.log">
+            <ThresholdFilter level="ERROR"/>
+            <PatternLayout
+                    pattern="%d{yyyy-MM-dd HH:mm:ss,SSS} - %logger [%thread] %-5level %c %M:%L - %msg%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+        </RollingFile>
+        <!-- warnLog日志 -->
+        <RollingFile name="warnlog" fileName="log/backend/warn.log" filePattern="log/backend/warn.%d{yyyy-MM-dd}.log">
+            <ThresholdFilter level="WARN"/>
+            <PatternLayout
+                    pattern="%d{yyyy-MM-dd HH:mm:ss,SSS} - %logger [%thread] %-5level %c %M:%L - %msg%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+        </RollingFile>
+
+        <!--监控相关日志 begin -->
+        <RollingFile name="RollingFileHttpTrace" fileName="log/backend/trace/trace_http.log"
+                     filePattern="log/backend/trace/trace_http.log.%d{yyyy-MM-dd}.txt">
+            <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss,SSS}],%m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+        </RollingFile>
+    </appenders>
+
+    <!--然后定义logger，只有定义了logger并引入的appender，appender才会生效-->
+    <loggers>
+
+        <!-- 监控相关日志-->
+        <logger name="httpTraceLog" level="INFO" additivity="false">
+            <appender-ref ref="RollingFileHttpTrace"/>
+        </logger>
+
+        <!--建立一个默认的root的logger-->
+        <root level="INFO" includeLocation="true">
+            <appender-ref ref="console"/>
+            <appender-ref ref="errorlog"/>
+            <appender-ref ref="warnlog"/>
+            <appender-ref ref="infolog"/>
+        </root>
+    </loggers>
+</configuration>

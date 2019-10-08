@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>杨波个人博客-分享技术的个人博客网站</title>
+        <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport"/>
+        <meta content="yes" name="apple-mobile-web-app-capable"/>
+        <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+        <meta content="telephone=no" name="format-detection"/>
+        <link href="css/login.css" rel="stylesheet" type="text/css"/>
+        <script type="text/javascript" src="plugin/jquery.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/login.css" />
+        <link rel="stylesheet" type="text/css" href="css/waplogin.css" />
+        <script src="plugin/layer/layer.min.js"></script>
+        <script src="js/common.js"></script>
+        <script src="js/login.js"></script>
+    </head>
+    <body>
+        <section class="aui-flexView">
+            <header class="aui-navBar aui-navBar-fixed b-line">
+                <div class="aui-center">
+                    <span class="aui-center-title">杨波个人博客登录</span>
+                </div>
+            </header>
+            <section class="aui-scrollView">
+                <div class="aui-code-box">
+                    <form  id="form" onsubmit="return false">
+                        <p class="aui-code-line">
+                            <input type="text" class="aui-code-line-input" value="" name="account" id="account" autocomplete="off" placeholder="请输入用户名"/>
+                        </p>
+                        <p class="aui-code-line aui-code-line-clear">
+							
+                            <i class="aui-show  operate-eye-open"></i>
+                            <input type="password" class="aui-code-line-input password" name="password" id="password" placeholder="密码" value="">
+                        </p>
+                        <div class="aui-code-btn">
+                            <button id="login_btu">登录</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="aui-login-armor">
+                    <a href="javascript:void(0)" class="iconQQ" data-qrid="" data-appplt="" onclick="openThirdParty('phqq', this);"></a>
+                    <a href="javascript:void(0)" class="iconWB" data-qrid="" data-appplt=""  onclick="openThirdParty('phwb', this);"></a>
+                </div>
+            </section>
+        </section>
+        <script type="text/javascript" src="js/waplogin.js"></script>
+    </body>
+</html>

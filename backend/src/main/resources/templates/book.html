@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h6>Thymeleaf 模板引擎</h6>
+<table border="1" bgcolor="#f0ffff">
+    <thead>
+    <tr>
+        <th>序号</th>
+        <th>标题</th>
+        <th>摘要</th>
+        <th>创建时间</th>
+    </tr>
+    </thead>
+    <tbody th:each="book : ${booklist}">
+    <tr>
+        <td th:text="${book.id}"></td>
+        <td th:text="${book.name}"></td>
+        <td th:text="${book.author}"></td>
+        <td th:text="${book.publicationdate}"></td>
+        <td th:text="${book.publication}"></td>
+        <td th:text="${book.price}"></td>
+        <td th:text="${book.image}"></td>
+        <td th:text="${book.remark}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
