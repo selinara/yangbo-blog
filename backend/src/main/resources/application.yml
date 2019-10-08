@@ -5,8 +5,8 @@ server:
 
 spring:
   redis:
-    host: www.yangshuqian.com
-    password: YANGbo!@#$1234
+    host: 127.0.0.1
+    password: xxx
     port: 36897
     database: 0
     timeout: 3000ms
@@ -51,8 +51,8 @@ spring:
   mail:
     host: smtp.163.com
     port: 465
-    username: bo_yangfly@163.com
-    password: vhugindijcw567
+    username: xxxx
+    password: xxxx
     default-encoding: UTF-8
     properties:
       mail:
