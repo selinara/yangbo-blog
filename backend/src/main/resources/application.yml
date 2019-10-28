@@ -1,5 +1,5 @@
 server:
-  port: 1227
+  port: xxxx
   servlet:
     context-path: /gbo
 
